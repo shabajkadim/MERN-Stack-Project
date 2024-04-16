@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import dotenv, { config } from 'dotenv'
+import dotenv from 'dotenv'
 import AllRoutes  from './Router/index.js'
 import mongoose from 'mongoose'
 

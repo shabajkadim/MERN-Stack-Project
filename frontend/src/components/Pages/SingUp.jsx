@@ -18,7 +18,7 @@ const SignUp = () => {
     confirmPassword:"",
     image:""
   })
-  // console.log(data);
+  console.log(data);
 
   const handleShowPassword = () => {
     setShowPassword((prevalue) => !prevalue);
@@ -49,24 +49,23 @@ const  handleProfileImage= async(e)=>{
   async function handleSubmit(event){
     event.preventDefault()
     try{
-      if(data.firstname && data.lastname && data.email && data.password && data.confirmPassword){
+      if(data.firstname && data.lastname && data.email && data.password && data.confirmPassword && data.image){
         if(data.password === data.confirmPassword){
-          const response =await axios.post('http://localhost:8000/api/v1/auth/signup',{data})
-          // const response={data:{success:true , message:"Sign up Successfull" , token:"kjsahgdfkjj"}}
+          
+            // const response =await axios.post('http://localhost:8000/api/v1/auth/signup',{data})
+          const response={data:{success:true , message:"Sign up Successfull" , token:"kjsahgdfkjj"}}
           if(response.data.success === true){
           alert(response.data.message)
           setData({firstname:"", lastname:"",email:"", password:"",confirmPassword:""})
           localStorage.setItem("my-tokendata",JSON.stringify(response.data.token));
           router('/login')
-           
           }
-
         }else{
           alert("Password and cofirmpassword not same")
         }
 
       }else{
-        alert("All fields are require")
+        alert("All fields are require & also your image")
       }
       
     }catch(error){

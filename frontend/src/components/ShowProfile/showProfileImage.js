@@ -1,5 +1,4 @@
 
-
 async function showProfileImage(file){
   const reader=new FileReader()
   reader.readAsDataURL(file)

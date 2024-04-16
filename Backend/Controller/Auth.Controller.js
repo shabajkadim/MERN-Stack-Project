@@ -2,6 +2,7 @@
 import UserSchema from "../Modul/User.Schema.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { connect } from "mongoose";
 
 export const SignUp = async (req, res) => {
     try {
@@ -12,6 +13,9 @@ export const SignUp = async (req, res) => {
 
         if (!firstname || !lastname || !email || !password || !confirmPassword) {
             return res.status(400).send("All fields are required");
+        }
+        if(!image){
+            return res.status(400).json({success:false , message:"please upload youre image"})
         }
 
         const emailIsExist = await UserSchema.find({ email: email });
@@ -50,9 +54,9 @@ export const SignUp = async (req, res) => {
 export const Login = async (req, res) => {
     // return res.send("login page")
     try {
-        const{email,password}=req.body
+        // const{email,password}=req.body
         // console.log(req.body);
-        // const { email, password } = req.body.loginData;
+        const { email, password } = req.body.loginData;
 
         if (!email || !password) {
             return res.status(401).json({ success: false, message: "Email and password are required" });
@@ -66,21 +70,36 @@ export const Login = async (req, res) => {
         const isCorrectPassword=await bcrypt.compare(password,user.password)
 
         if(!isCorrectPassword){
-            return res.send(401).json({success:false, message:"Password is incorrect"})
+            return res.status(404).json({success:false, message:"Password is incorrect"})
         }
         
         const token=await jwt.sign({userId:user._id},process.env.JWT_SECRET)
-        // console.log(token,"token");
+        console.log(token,"token");
+        
 
-        return res.status(200).json({ success: true, message: "Login successful" , isCorrectPassword, token:token, user:{userId:user._id, name:user.name, email:user.email}});
+        return res.status(200).json({ success: true, message: "Login successful",   token:token, user:{userId:user._id, name:user.name, email:user.email} });
     } catch (error) {
-        return res.status(500).json({ error });
+        return res.status(500).json({ success:false, error:error});
     }
 
 }
 
 
+export const getCurrentUser=async(req,res)=>{
+    try{
+        const {token}=req.body
 
+        if(!token){
+            return res.status(400).json({success:false, messsage:"token is reuired"})
+        }
 
- 
+        const decodedData=await jwt.verify(token,process.env.JWT_SECRET)
+        // console.log(decodedData.userId,"decodedData");
 
+        const user=await UserSchema.findById(decodedData.userId)
+        console.log(user,"user");
+        return res.status(200).json({success:true})
+    }catch(error){
+        return res.status(500).json({success:false, error:error})
+    }
+}

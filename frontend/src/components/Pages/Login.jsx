@@ -29,19 +29,22 @@ const {LOGIN}=useContext(AuthContext)
     try {
       if (loginData.email && loginData.password) {
         // const response = await axios.post("http://localhost:8000/api/v1/auth/login", { loginData });
-        const response={data:{success:true , message:"login suucessfulr",token:"qhdfewghukb45",userData:{name:"shabaaj",email:"shabaaj@1234"}}}
+        const response={data:{success:true , message:"login suucessfulr",token:"qhdfewghukb45",user:{name:"shabaaj",email:"shabaaj@1234"}}}
             if(response.data.success===true){
-              localStorage.setItem("token",JSON.stringify(response.data.token))
-              LOGIN(response.data.userData)
+              localStorage.setItem("my-token",JSON.stringify(response.data.token))
+              LOGIN(response.data.user)
               alert(response.data.message)
               setLoginData({email:"" , password:""})
-              router('/')
+              // router('/')
+              
             }
       } else {
         alert("All fields are required");
       }
     } catch (error) {
       console.log(error);
+      alert(error.response.data.error,"please check password or email")
+      router('/sign-up')
     }
   }
   

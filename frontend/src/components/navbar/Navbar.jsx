@@ -8,10 +8,12 @@ import { AuthContext } from "../context/AuthContext";
 export const Navbar = () => {
   const [showProfile, setShowProfile] = useState(false);
   const {state,LOGOUT}=useContext(AuthContext)
+  console.log(state?.user?.email,"kqwefukgfiuqwyehfui");
 
   const handleShowProfile=()=>{
     setShowProfile((prevalue=>!prevalue))
   }
+  console.log(process.env.REACT_APP_ADMIN_EMAIL);
   return (
     <navbar className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
       {/* {Dekstop} */}
@@ -45,9 +47,9 @@ export const Navbar = () => {
             {showProfile && (
               <div className="absolute flex flex-col right-2 bg-white py-2 px-2 shadow drop-shadow">
                 <Link to={'new-product'} className="whitespace-nowrap cursor-pointer">New Product</Link>
-                {/* <Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>
-                <p>{state?. user?.email}</p> */}
-                {state?.user?.email? <p><p>{state?. user?.email}</p><button onClick={()=>LOGOUT()}>LOGOUT</button><p></p></p>:<Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>}
+                {/* { <Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>
+                 <p>{state?. user?.email}</p> } */}
+                {state?.user?.name? <p><p>{state?. user?.name}</p><button onClick={()=>LOGOUT()}>LOGOUT</button><p></p></p>:<Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>}
               </div>
             )}
           </div>

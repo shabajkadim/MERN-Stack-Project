@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useReducer } from "react";
+import { json } from "react-router-dom";
 
 
 export const AuthContext=createContext()
@@ -29,27 +30,28 @@ const AuthContextComponent=({children})=>{
         dispatch({type:"LOGOUT"})
     }
    
-   async function getUserData(){
+   async function getUserData(token){
       try{
-        // const response=await axios.post("http://localhost:800/api/v1/auth/login",{token})
+        // const response=await axios.post("http://localhost:800/api/v1/auth/get-currrent-user",{token})
           const response={data:{success:true , message:"login suucessfull",userData:{name:"shabaaj",email:"shabaaj@1234"}}}
           if(response.data.success){
-              // LOGIN(response.data.userData)
+              LOGIN(response.data.userData)
               dispatch({type:"LOGIN",payload:response.data.user})
+        
           }
       }catch(error){
-          console.log(error);
+          console.log(error.response.data.message);
       }
   }
 
   useEffect(()=>{
-      const token=JSON.parse(localStorage.getItem("token"))
+      const token=JSON.parse(localStorage.getItem("my-token"))
       if(token){
-          getUserData()
+          getUserData(token)
       }
   },[])
 return(
-    <AuthContext.Provider value={{state,LOGIN,LOGOUT}}>
+    <AuthContext.Provider value={{state,LOGIN,LOGOUT,dispatch}}>
         {children}
     </AuthContext.Provider>
 )
