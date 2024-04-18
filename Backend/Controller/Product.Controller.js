@@ -20,7 +20,7 @@ export const AddProduct = async (req, res) => {
         await product.save();
         return res.status(200).json({ success: true, message: "uploaded successfully" }); 
     } catch (error) {
-        return res.status(500).json({ error });
+        return res.status(500).json({ error:error, success:false });
     }
 };
 
@@ -28,7 +28,7 @@ export const AddProduct = async (req, res) => {
 export const getProduct=async(req,res)=>{
     try{
         const getAllData=await ProdutSchema.find({})
-    res.status(200).json(getAllData)
+    res.status(200).json({getAllData:getAllData,success:true})
     }catch(error){
         console.log(error);
         return res.status(500).json({error:error})
