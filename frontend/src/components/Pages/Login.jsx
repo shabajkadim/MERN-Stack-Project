@@ -4,9 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext  } from "../context/AuthContext.js";
 
+
 const Login = () => {
 
-const {LOGIN}=useContext(AuthContext)
+const {LOGIN}=useContext(AuthContext)//mydata
+
 
   const [showPassword, setShowPassword] = useState(false);
   const router = useNavigate();
@@ -14,7 +16,7 @@ const {LOGIN}=useContext(AuthContext)
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   // console.log(loginData);
   
-
+ 
   const handleShowPassword = () => {
     setShowPassword((prevalue) => !prevalue);
   };
@@ -33,7 +35,7 @@ const {LOGIN}=useContext(AuthContext)
         // const response={data:{success:true , message:"login suucessfulr",token:"qhdfewghukb45",userData:{name:"shabaaj",email:"shabaaj@1234"}}}
             if(response.data.success===true){
               localStorage.setItem("token",JSON.stringify(response.data.token))
-              LOGIN(response.data.userData)
+              LOGIN(response.data.userData)//mydata
               alert(response.data.message)
               setLoginData({email:"" , password:""})
               router('/demo')

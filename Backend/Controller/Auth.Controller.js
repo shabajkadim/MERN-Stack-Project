@@ -90,7 +90,7 @@ export const getCurrentUser=async(req,res)=>{
     try{
         const {token}=req.body
 		    if(!token){
-            return res.status(400).json({success:false, messsage:"token is reuired"})
+            return res.status(404).json({success:false, messsage:"token is reuired"})
         }
 
         const decodedData=await jwt.verify(token,process.env.JWT_SECRET)
@@ -102,7 +102,7 @@ export const getCurrentUser=async(req,res)=>{
 		if (!user) {
             return res.status(404).json({ success: false })
         }
-        return res.status(200).json({success:true})
+        return res.status(200).json({success:true, user: { name: user.name, email: user.email, userId: user._id }})
     }catch(error){
         return res.status(500).json({success:false, error:error})
     }

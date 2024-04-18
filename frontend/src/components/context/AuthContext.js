@@ -20,35 +20,36 @@
 // const AuthContextComponent = ({ children }) => {
 //     const [state, dispatch] = useReducer(Reducer, InitailState);
 
-//     function LOGIN(data) {
-//         dispatch({ type: "LOGIN", payload: data });
-//     }
+//     // function LOGIN(data) {
+//     //     dispatch({ type: "LOGIN", payload: data });
+//     // }
 
-//     function LOGOUT() {
-//         dispatch({ type: "LOGOUT" });
-//     }
+//     // function LOGOUT() {
+//     //     dispatch({ type: "LOGOUT" });
+//     // }
 
-//     async function getUserData() {
+//     async function getUserData(token) {
 //         try {
-//             // const response = await axios.post("http://localhost:800/api/v1/auth/get-currrent-user",{token})
-//             const response = { data: { success: true, message: "login successful", userData: { name: "shabaaj", email: "shabaaj@1234" } } };
+//             const response = await axios.post("http://localhost:800/api/v1/auth/get-currrent-user",{token})
+//             // const response = { data: { success: true, message: "login successful", userData: { name: "shabaaj", email: "shabaaj@1234" } } };
 //             if (response.data.success) {
-//                 LOGIN(response.data.userData);
+//                 // LOGIN(response.data.userData);
+//                 dispatch({type:"LOGIN",payload:response.data.user})
 //             }
 //         } catch (error) {
-//             console.log(error); //.response.data.message
+//             console.log(error.response.data.message); //.response.data.message
 //         }
 //     }
 
 //     useEffect(() => {
 //         const token = JSON.parse(localStorage.getItem("token"));
 //         if (token) {
-//             getUserData();
+//             getUserData(token);
 //         }
 //     }, []);
 
 //     return (
-//         <AuthContext.Provider value={{ state, LOGIN, LOGOUT, dispatch }}>
+//         <AuthContext.Provider value={{ state,dispatch }}>
 //             {children}
 //         </AuthContext.Provider>
 //     );
@@ -108,8 +109,6 @@ const AuthContextComponent=({children})=>{
             getuserData(token)
         }
     },[])
-    
-
     
 return(
     <AuthContext.Provider value={{state,LOGIN,LOGOUT,dispatch}}> 
