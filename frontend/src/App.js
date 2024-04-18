@@ -11,6 +11,7 @@ import NewProduct from './components/Pages/NewProduct';
 import Login from './components/Pages/Login';
 import SignUp from './components/Pages/SingUp';
 import NoPageFound from './components/NoPageFound';
+import Demo from './components/Pages/Demo';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='new-product' element={<NewProduct/>} />
         <Route path='login' element={<Login/>} />
         <Route path='sign-up' element={<SignUp/>}  />
+        <Route path='demo' element={<Demo/>}/>
 </Routes>
     </div>
   );

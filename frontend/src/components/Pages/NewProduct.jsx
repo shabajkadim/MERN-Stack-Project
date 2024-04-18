@@ -54,6 +54,7 @@ const NewProduct = () => {
     }
     console.log("22222");
   }
+  
   return (
     <div className='pt-20 bg-slate-100 min-h-0 min-h-[650px]'>
       <div className='m-auto w-full max-w-md'>

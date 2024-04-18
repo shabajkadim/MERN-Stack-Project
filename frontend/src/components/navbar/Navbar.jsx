@@ -8,11 +8,12 @@ import { AuthContext } from "../context/AuthContext";
 export const Navbar = () => {
   const [showProfile, setShowProfile] = useState(false);
   const {state,LOGOUT}=useContext(AuthContext)
-  console.log(state);
+  // console.log(state);
 
   const handleShowProfile=()=>{
     setShowProfile((prevalue=>!prevalue))
   }
+  console.log(process.env.REACT_APP_ADMIN_EMAIL);
   
   return (
     <navbar className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">

@@ -52,8 +52,8 @@ const  handleProfileImage= async(e)=>{
       if(data.firstname && data.lastname && data.email && data.password && data.confirmPassword && data.image){
         if(data.password === data.confirmPassword){
           
-            // const response =await axios.post('http://localhost:8000/api/v1/auth/signup',{data})
-          const response={data:{success:true , message:"Sign up Successfull" , token:"kjsahgdfkjj"}}
+            const response =await axios.post('http://localhost:8000/api/v1/auth/signup',{data})
+          // const response={data:{success:true , message:"Sign up Successfull" , token:"kjsahgdfkjj"}}
           if(response.data.success === true){
           alert(response.data.message)
           setData({firstname:"", lastname:"",email:"", password:"",confirmPassword:""})

@@ -1,5 +1,6 @@
 
-import UserSchema from "../Modul/User.Schema.js"
+import UserSchema from "../Modal/User.Schema.js"
+// import UserSchema from '../Modal/User.Schema';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { connect } from "mongoose";

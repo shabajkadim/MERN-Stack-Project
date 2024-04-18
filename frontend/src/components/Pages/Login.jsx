@@ -13,6 +13,7 @@ const {LOGIN}=useContext(AuthContext)
 
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   // console.log(loginData);
+  
 
   const handleShowPassword = () => {
     setShowPassword((prevalue) => !prevalue);
@@ -28,14 +29,14 @@ const {LOGIN}=useContext(AuthContext)
     event.preventDefault();
     try {
       if (loginData.email && loginData.password) {
-        // const response = await axios.post("http://localhost:8000/api/v1/auth/login", { loginData });
-        const response={data:{success:true , message:"login suucessfulr",token:"qhdfewghukb45",userData:{name:"shabaaj",email:"shabaaj@1234"}}}
+        const response = await axios.post("http://localhost:8000/api/v1/auth/login", { loginData });
+        // const response={data:{success:true , message:"login suucessfulr",token:"qhdfewghukb45",userData:{name:"shabaaj",email:"shabaaj@1234"}}}
             if(response.data.success===true){
               localStorage.setItem("token",JSON.stringify(response.data.token))
-              LOGIN(response.data.user)
+              LOGIN(response.data.userData)
               alert(response.data.message)
               setLoginData({email:"" , password:""})
-              router('/')
+              router('/demo')
               
             }
       } else {

@@ -1,5 +1,5 @@
 
-import ProdutSchema from "../Modul/Produt.Schema.js";
+import ProdutSchema from "../Modal/Produt.Schema.js";
 
 export const AddProduct = async (req, res) => {
     try {
@@ -23,3 +23,14 @@ export const AddProduct = async (req, res) => {
         return res.status(500).json({ error });
     }
 };
+
+
+export const getProduct=async(req,res)=>{
+    try{
+        const getAllData=await ProdutSchema.find({})
+    res.status(200).json(getAllData)
+    }catch(error){
+        console.log(error);
+        return res.status(500).json({error:error})
+    }
+}
