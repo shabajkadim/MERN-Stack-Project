@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
+import loadingIcon from  './../project-imge/loading-icon.gif'
 import axios from 'axios'
 const Demo = () => {
   const{state,LOGOUT}=useContext(AuthContext)
   
   const [products, setProducts] = useState([])
   console.log(products, "products")
+
+  // const testProduct=products.slice(2,8)
+  // console.log(testProduct,"testhjgdjs");
+
   async function getProducts() {
       try {
         const response=await axios.get('http://localhost:8000/api/v1/product/get-product')
@@ -25,20 +30,34 @@ const Demo = () => {
       <h3>Demo page</h3>
       <h2>welcom:{state?.user?.name}</h2>
       <button onClick={LOGOUT}></button>
-      <div>
-      {products?.length ? <div >
+      <div className='item-center '>
+      {products?.length ? <div className='flex flex-wrap gap-4 p-4 items-center' >
                 {products?.map((product) => (
-                    <div>\
-                      <p><img src={product.image} /></p>                       
+                    <div >
+                      <p><img className='w-22 h-20  ' src={product.image} /></p>                       
                         <h3>Name : {product.name}</h3>
                         <h4>Price : {product.price}/-</h4>
                         <h4>Category : {product.category}</h4>
                        
                     </div>
                 ))}
-            </div> : <div>Loading..</div>}
+            </div> : <div className='flex justify-center items-center w-full h-full'><img src={loadingIcon} className='items-center ' /></div>
+            }
 
       </div>
+
+      {/* <div>
+        {testProduct?.length? <div>
+          {testProduct?.map((filterData)=>
+            (
+              <div>
+                <p><img src={filterData.image} /></p>
+              </div>
+            )
+          )}
+        </div> : <div>filterData</div>}
+      </div> */}
+
     </div>
   )
 }

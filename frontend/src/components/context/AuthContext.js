@@ -61,7 +61,7 @@
 
 
 import { createContext, useEffect, useReducer } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 export const AuthContext=createContext()
 
@@ -93,9 +93,9 @@ const AuthContextComponent=({children})=>{
    async function getuserData(token){
         try{
             // const response=await axios.post("http://localhost:800/api/v1/auth/get-currrent-user",{token})
-            const response={data:{success:true , message:"login suucessfulr",userData:{name:"shabaaj",email:"shabaaj@1234"}}}
+            const response={data:{success:true , message:"login suucessfulr",user:{name:"shabaaj",email:"shabaaj@1234"}}}
             if(response.data.success){
-                LOGIN(response.data.userData)   
+                LOGIN(response.data.user)   
             }
         }catch(error){
             console.log(error);

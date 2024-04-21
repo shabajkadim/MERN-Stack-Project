@@ -35,7 +35,7 @@ const {LOGIN}=useContext(AuthContext)//mydata
         // const response={data:{success:true , message:"login suucessfulr",token:"qhdfewghukb45",userData:{name:"shabaaj",email:"shabaaj@1234"}}}
             if(response.data.success===true){
               localStorage.setItem("token",JSON.stringify(response.data.token))
-              LOGIN(response.data.userData)//mydata
+              LOGIN(response.data.user)//mydata
               alert(response.data.message)
               setLoginData({email:"" , password:""})
               router('/demo')

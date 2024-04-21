@@ -1,0 +1,21 @@
+export const CardFeature = ({ name, image, category, price }) => {
+  return (
+    <div className="w-full mt-4 min-w-[200px] max-w-[200px] bg-white hover:shadow-lg drop-shadow-lg px-4 pt-4 flex flex-col justify-center cursor-pointer">
+      <div className="h-28 items-center flex flex-col justify-center">
+        <img className="h-full rounded w-full " src={image} />
+      </div>
+      <p className="text-center font-semibold capitalize text-slate-700 text-lg mt-4 whitespace-nowrap overflow-hidden">
+        {name}
+      </p>
+      <p className="text-center capitalize font-medium text-slate-500 ">
+        {category}
+      </p>
+      <p className="text-center font-bold">
+        <span className="text-red-600">₹</span>
+        {price}/-
+      </p>
+
+      <button className="bg-yellow-500 h-10 mt-1 font-bold text-slate-800 hover:rounded-[50px] mb-4">Add Cart</button>
+    </div>
+  );
+};

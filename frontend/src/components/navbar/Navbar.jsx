@@ -7,12 +7,20 @@ import { AuthContext } from "../context/AuthContext";
 
 export const Navbar = () => {
   const [showProfile, setShowProfile] = useState(false);
+
+  const[menuList,setMenuList]=useState(false);
+
   const {state,LOGOUT}=useContext(AuthContext)
   // console.log(state);
 
   const handleShowProfile=()=>{
     setShowProfile((prevalue=>!prevalue))
   }
+
+  const handleShowMenu=()=>{
+    setMenuList((prevalue=>!prevalue))
+  }
+
   console.log(process.env.REACT_APP_ADMIN_EMAIL);
   
   return (
@@ -26,12 +34,25 @@ export const Navbar = () => {
           </div>
         </Link>
 
-        <div className="flex items-center gap-4 md:gap-8 ">
-          <div className="flex gap-5 md:gap-8 text-base md:text-lg">
+        <div className="flex items-center gap-4 md:gap-8  ">
+          <div className="flex gap-5 md:gap-8 text-base md:text-lg hidden md:flex">
             <Link to={""}>Home</Link>
             <Link to={"menu"}>Menu</Link>
             <Link to={"about"}>About</Link>
             <Link to={"contact"}>Contact</Link>
+          </div>
+
+          <div  className=" md:hidden  text-xl text-slate-600" >
+            <div onClick={()=>handleShowMenu()} className="text-2xl cursor-pointer">
+              <i class="fa-solid fa-bars"></i>
+            </div>
+            {menuList && (<div className=" absolute flex flex-col bg-white gap-2  mt-2 text-base py-2 px-2 shadow drop-shadow ">
+            <Link to={""}>Home</Link>
+            <Link to={"menu"}>Menu</Link>
+            <Link to={"about"}>About</Link>
+            <Link to={"contact"}>Contact</Link>
+          </div>
+        )}
           </div>
 
           <div className="text-2xl text-slate-600 relative">
@@ -41,7 +62,7 @@ export const Navbar = () => {
             </div>
           </div>
 
-          <div className="text-xl text-slate-600" onClick={handleShowProfile}>
+          <div className="text-xl text-slate-600 pr-4 md:pr-2" onClick={handleShowProfile} >
             <div className="text-3xl cursor-pointer">
               <i class="fa-regular fa-circle-user"></i>
             </div>
