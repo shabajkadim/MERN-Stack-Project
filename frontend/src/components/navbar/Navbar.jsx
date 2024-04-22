@@ -24,20 +24,20 @@ export const Navbar = () => {
   console.log(process.env.REACT_APP_ADMIN_EMAIL);
   
   return (
-    <navbar className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
+    <navbar className="fixed shadow-md w-full h-16 px-2  md:px-4 z-50 bg-white">
       {/* {Dekstop} */}
       <div className="flex items-center h-full  justify-between ">
         <Link to={"/"}>
           <div className="h-14 w-28 ">
             {/* <img src={logo} className="h-full" /> */}
-            <img src={homelogo} className="h-full w-full" />
+            <img src={homelogo} alt="homelogo" className="h-full w-full" />
           </div>
         </Link>
 
         <div className="flex items-center gap-4 md:gap-8  ">
           <div className="flex gap-5 md:gap-8 text-base md:text-lg hidden md:flex">
             <Link to={""}>Home</Link>
-            <Link to={"menu"}>Menu</Link>
+            <Link to={"menu/:id"}>Menu</Link>
             <Link to={"about"}>About</Link>
             <Link to={"contact"}>Contact</Link>
           </div>
@@ -48,7 +48,7 @@ export const Navbar = () => {
             </div>
             {menuList && (<div className=" absolute flex flex-col bg-white gap-2  mt-2 text-base py-2 px-2 shadow drop-shadow ">
             <Link to={""}>Home</Link>
-            <Link to={"menu"}>Menu</Link>
+            <Link to={"menu/:id"}>Menu</Link>
             <Link to={"about"}>About</Link>
             <Link to={"contact"}>Contact</Link>
           </div>
@@ -56,10 +56,12 @@ export const Navbar = () => {
           </div>
 
           <div className="text-2xl text-slate-600 relative">
-            <i class="fa-solid fa-cart-shopping"></i>
+           <Link to={'/cart'}>
+           <i class="fa-solid fa-cart-shopping"></i>
             <div className="absolute -top-1 -right-2 text-white rounded-full m-0 p-0 text-sm h-4 w-4 text-center bg-red-500">
               0
             </div>
+           </Link>
           </div>
 
           <div className="text-xl text-slate-600 pr-4 md:pr-2" onClick={handleShowProfile} >
@@ -71,7 +73,7 @@ export const Navbar = () => {
                 <Link to={'new-product'} className="whitespace-nowrap cursor-pointer">New Product</Link>
                 {/* { <Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>
                  <p>{state?. user?.email}</p> } */}
-                {state?.user?.name? <p><p>{state?. user?.name}</p><button onClick={()=>LOGOUT()}>LOGOUT</button><p></p></p>:<Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>}
+                {state?.user?.name? <p><p>{state?.user?.name}</p><button onClick={()=>LOGOUT()}>LOGOUT</button><p></p></p>:<Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>}
               </div>
             )}
           </div>

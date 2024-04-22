@@ -12,6 +12,7 @@ import Login from './components/Pages/Login';
 import SignUp from './components/Pages/SingUp';
 import NoPageFound from './components/NoPageFound';
 import Demo from './components/Pages/Demo';
+import Cart from './components/Pages/Cart';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Routes>
         <Route path='*' element={<NoPageFound/>} />
         <Route path='/' element={<Home/>} />
-        <Route path='menu' element={<Menu/>} />
+        <Route path='menu/:id' element={<Menu/>} />
         <Route path='about' element={<About/>} />
         <Route path='contact' element={<Contact/>} />
         <Route path='register' element={<Register/>} />
@@ -28,6 +29,7 @@ function App() {
         <Route path='login' element={<Login/>} />
         <Route path='sign-up' element={<SignUp/>}  />
         <Route path='demo' element={<Demo/>}/>
+        <Route path='cart' element={<Cart/>}/>
 </Routes>
     </div>
   );

@@ -3,23 +3,25 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { HomeCard } from "./homeCard/HomeCard";
 import { CardFeature } from "./All-products/cardFeature";
-import FilterProduct from "./All-products/FilterProduct";
+// import FilterProduct from "./All-products/FilterProduct";
+import { useNavigate } from "react-router-dom";
+import { AllProduct } from "./All-products/AllProduct";
+
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  console.log(products, "products");
+  const[load,setload]=useState(true)
+  // console.log(products, "products");
+  
+  const router=useNavigate()
 
   const filterProduct = products.slice(3, 7);
   const loading = new Array(4).fill(null);
 
   const vegetableProduct = products.filter((element) => element.category === "vegetable",[]);
-  console.log(vegetableProduct, "111111");
+  // console.log(vegetableProduct, "111111");
 
-  const categoryList=[...new Set(products.map((data)=>
-    {return (
-      data.category
-    )}
-  ))]
+  
 
   const slideProductRef=useRef()
   const nextProduct=()=>{
@@ -41,31 +43,25 @@ const Home = () => {
       console.log(error);
     }
   }
+  
   useEffect(() => {
     getProducts();
   }, []);
 
-  // filter Product
+ 
 
-  const[filterby,setFilterBy]=useState("")
-  const[isFilterProduct,setIsfilterProduct]=useState([])
 
-  useEffect(()=>{
-    setIsfilterProduct(products)
-  },[products])
+    //redirect 
 
-  const getFilterProduct=(category)=>{
-    const dataFilter=products.filter(el=>el.category === category)
-    setIsfilterProduct(()=>{
-      return[...dataFilter]
-    })
+     function redirect(id){
+      router(`/menu/${id}`)
     }
   
 
   return (
     <div className="pt-20 bg-slate-100 min-h-0 min-h-[650px] ">
       <div className="p-2 md:p-4  md:flex">
-        <div className=" md:w-1/2">
+      <div className=" md:w-1/2">
           <p className=" md:flex ">
             <span className=" bg-slate-400 items-center  text-xl font-bold text-neutral-900 md:bg-slate-400  mr-4 h-12 items-center pt-2 px-4 rounded-full  text-2xl font-bold text-neutral-900 ">
               {" "}
@@ -98,20 +94,21 @@ const Home = () => {
         </div>
 
         <div className=" md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
-          {filterProduct.map((data) => {
+          {filterProduct.map((element) => {
             return (
-              <div>
+              <div onClick={()=>redirect(element._id)} >
                 <HomeCard
-                  key={data._id}
-                  image={data.image}
-                  name={data.name}
-                  price={data.price}
-                  category={data.category}
+                  key={element._id}
+                  image={element.image}
+                  name={element.name}
+                  price={element.price}
+                  category={element.category}
                 />
               </div>
             );
-          })}
+          }) }
         </div>
+
       </div>
 
       <div className="p-2 md:p-4 ">
@@ -125,48 +122,30 @@ const Home = () => {
             <button  onClick={nextProduct} className="bg-slate-300 hover:bg-slate-400 w-10 text-xl p-1 rounded "><i class="fa-solid fa-angle-right"></i></button>
           </div>
         </div>
-        <div className="flex gap-5 overflow-scroll scrollbar-none scroll-smooth transition-all " ref={slideProductRef}>
+
+        {<div className="flex gap-5 overflow-scroll scrollbar-none scroll-smooth transition-all " ref={slideProductRef}>
           {vegetableProduct.map((element) => {
             return (
+              <div onClick={()=>redirect(element._id)}>
               <CardFeature
                 key={element._id}
+                id={element._id}
                 image={element.image}
                 name={element.name}
                 category={element.category}
                 price={element.price}
               />
+              </div>
             );
           })}
-        </div>
-      </div>
-
-      <div className="p-2 md:p-4">
-          <div className="font-bold text-3xl text-slate-800 mb-2">
-            Your Product
-          </div>
-
-          <div className=" flex gap-4 justify-center overflow-scroll scrollbar-none">
-            {categoryList.map((data)=>{
-              return (
-                <FilterProduct category={data} onClick={()=>getFilterProduct(data)} />
-              )
-            })}
-          </div>
+        </div>}
 
 
       </div>
 
-      <div className="flex flex-wrap justify-center gap-5">
-        {isFilterProduct.map((element)=>(
-          <CardFeature
-          key={element._id}
-          image={element.image}
-          name={element.name}
-          category={element.category}
-          price={element.price}
-        />
-        ))}
-      </div>
+     <div>
+      <AllProduct category={"All Product"} /> 
+     </div>
     </div>
   );
 };
