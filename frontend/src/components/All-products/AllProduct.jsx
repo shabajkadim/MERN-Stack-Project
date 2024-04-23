@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { CardFeature } from './cardFeature';
 import { useNavigate } from 'react-router-dom';
 import FilterProduct from './FilterProduct';
+import { useSelector } from 'react-redux';
 
 export const AllProduct = ({category}) => {
     const[products,setProducts]=useState([])//store all data
+    // const products=useSelector((state)=>state.product)
     const router=useNavigate()
 
     const vegetableProduct = products.filter((element) => element.category === "vegetable",[]);
@@ -17,15 +19,17 @@ export const AllProduct = ({category}) => {
     )}
   ))]
 
-  const[isFilterProduct,setIsfilterProduct]=useState([])
+  const[isFilterProduct,setIsFilterProduct]=useState([])
+
+  // const isFilterProduct=useSelector((state)=>state.product)
 
   useEffect(()=>{
-    setIsfilterProduct(products)
+    setIsFilterProduct(products)
   },[products])
 
   const getFilterProduct=(category)=>{
     const dataFilter=products.filter(el=>el.category === category)
-    setIsfilterProduct(()=>{
+    setIsFilterProduct(()=>{
       return[...dataFilter]
     })
     }
@@ -67,6 +71,7 @@ export const AllProduct = ({category}) => {
           <div onClick={()=>redirect(element._id)}>
           <CardFeature
           key={element._id}
+          id={element._id}
           image={element.image}
           name={element.name}
           category={element.category}

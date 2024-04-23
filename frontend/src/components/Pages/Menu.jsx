@@ -7,13 +7,13 @@ const Menu = () => {
   const[singleData,setSingleData]=useState([])
   // console.log(singleData,"singleData");
 
-  const sliceOneProduct=singleData.slice(2,3)
-  console.log(sliceOneProduct,"sliceOneProduct");
+  // const sliceOneProduct=singleData.slice(2,3)
+  // console.log(sliceOneProduct,"sliceOneProduct");
 
   const{id}=useParams()
 
   const displayData=singleData.filter(elemet=>elemet._id === id )[0]
-  console.log(displayData,"321");
+  // console.log(displayData,"321");
 
 
 

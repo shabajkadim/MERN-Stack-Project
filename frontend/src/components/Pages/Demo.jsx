@@ -3,20 +3,27 @@ import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import loadingIcon from  './../project-imge/loading-icon.gif'
 import axios from 'axios'
+import {setDataProduct} from '../redux/productSlice'
+import { useDispatch, useSelector} from 'react-redux'
+
 const Demo = () => {
   const{state,LOGOUT}=useContext(AuthContext)
+  const productData=useSelector((state)=>state.product)
+  const dispatch=useDispatch()
+
   
   const [products, setProducts] = useState([])
-  console.log(products, "products")
+  // console.log(products, "products")
 
   // const testProduct=products.slice(2,8)
   // console.log(testProduct,"testhjgdjs");
 
   async function getProducts() {
       try {
-        const response=await axios.get('http://localhost:8000/api/v1/product/get-product')
+        const response=await axios.get('http://localhost:8000/api/v1/product/get-product','product')
           if (response?.data.success) {
               setProducts(response.data.getAllData)
+              dispatch(setDataProduct(response.data.getAllData))
           }
       } catch (error) {
           console.log(error)
@@ -25,6 +32,8 @@ const Demo = () => {
   useEffect(() => {
       getProducts()
   }, [])
+  console.log(productData,"productData");
+
   return (
     <div style={state} className='pt-20 bg-slate-100 min-h-0 min-h-[650px]'>
       <h3>Demo page</h3>

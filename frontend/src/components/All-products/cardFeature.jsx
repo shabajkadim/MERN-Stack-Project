@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
+import { addCartItem } from "../redux/productSlice";
+import { useDispatch } from "react-redux";
 
 export const CardFeature = ({ name, image, category, price,id }) => {
-  
-  const handleAddCarProduct=(e)=>{
-    e.stopPropagation()
+  const dispatch=useDispatch()
+  const handleAddCarProduct=(e,)=>{
+    dispatch(addCartItem({name,image,category,price,id}))
   }
+  
+
 
   return (
     <div className="w-full mt-4 min-w-[200px] max-w-[200px] bg-white hover:shadow-lg drop-shadow-lg px-4 pt-4 flex flex-col justify-center cursor-pointer">
@@ -25,7 +29,7 @@ export const CardFeature = ({ name, image, category, price,id }) => {
         {price}/-
       </p>
       </Link>
-      <button className="bg-yellow-500 w-full hover:bg-yellow-600 h-10 mt-1 font-bold text-slate-800 hover:rounded-[50px] mb-4" onClick={()=>handleAddCarProduct}>Add Cart</button>
+      <button className="bg-yellow-500 w-full hover:bg-yellow-600 h-10 mt-1 font-bold text-slate-800 hover:rounded-[50px] mb-4" onClick={()=>handleAddCarProduct(id)}>Add Cart</button>
 
      
       </>

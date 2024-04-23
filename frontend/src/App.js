@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
+
 import {Route, Routes} from 'react-router-dom'
 import Home from './components/Home';
 import { Navbar } from './components/navbar/Navbar';
@@ -13,8 +12,12 @@ import SignUp from './components/Pages/SingUp';
 import NoPageFound from './components/NoPageFound';
 import Demo from './components/Pages/Demo';
 import Cart from './components/Pages/Cart';
+import { useEffect } from 'react';
+import axios from 'axios';
+
 
 function App() {
+  
   return (
     <div >
       <Navbar />

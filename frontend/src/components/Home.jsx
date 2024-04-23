@@ -10,13 +10,13 @@ import { AllProduct } from "./All-products/AllProduct";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const[load,setload]=useState(true)
+  
   // console.log(products, "products");
   
   const router=useNavigate()
 
   const filterProduct = products.slice(3, 7);
-  const loading = new Array(4).fill(null);
+  // const loading = new Array(4).fill(null);
 
   const vegetableProduct = products.filter((element) => element.category === "vegetable",[]);
   // console.log(vegetableProduct, "111111");
@@ -94,7 +94,7 @@ const Home = () => {
         </div>
 
         <div className=" md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
-          {filterProduct.map((element) => {
+          {filterProduct.map((element,id) => {
             return (
               <div onClick={()=>redirect(element._id)} >
                 <HomeCard
