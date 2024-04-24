@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import homelogo from './../project-imge/homelogo.png'
 import { AuthContext } from "../context/AuthContext";
+import { useSelector } from "react-redux";
 
 
 export const Navbar = () => {
@@ -20,6 +21,8 @@ export const Navbar = () => {
   const handleShowMenu=()=>{
     setMenuList((prevalue=>!prevalue))
   }
+
+  const cartItemNumber=useSelector((state)=>state.product.cartItem)
 
   console.log(process.env.REACT_APP_ADMIN_EMAIL);
   
@@ -58,8 +61,8 @@ export const Navbar = () => {
           <div className="text-2xl text-slate-600 relative">
            <Link to={'/cart'}>
            <i class="fa-solid fa-cart-shopping"></i>
-            <div className="absolute -top-1 -right-2 text-white rounded-full m-0 p-0 text-sm h-4 w-4 text-center bg-red-500">
-              0
+            <div className="absolute -top-1 -right-1.5 text-white rounded-full m-0 p-0 text-sm h-5 w-5 text-center bg-red-500">
+              {cartItemNumber.length}
             </div>
            </Link>
           </div>

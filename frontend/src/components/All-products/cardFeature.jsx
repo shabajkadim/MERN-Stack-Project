@@ -4,8 +4,13 @@ import { useDispatch } from "react-redux";
 
 export const CardFeature = ({ name, image, category, price,id }) => {
   const dispatch=useDispatch()
-  const handleAddCarProduct=(e,)=>{
-    dispatch(addCartItem({name,image,category,price,id}))
+  const handleAddCarProduct=(e)=>{
+    dispatch(addCartItem({
+      _id:id,
+      name:name,
+      image:image,
+      category:category,
+      price:price}))
   }
   
 

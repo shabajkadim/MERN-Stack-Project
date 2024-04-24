@@ -2,13 +2,20 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { AllProduct } from '../All-products/AllProduct';
+import { useDispatch } from 'react-redux';
+import { addCartItem } from '../redux/productSlice';
 
 const Menu = () => {
   const[singleData,setSingleData]=useState([])
   // console.log(singleData,"singleData");
+  const dispatch=useDispatch()
 
   // const sliceOneProduct=singleData.slice(2,3)
   // console.log(sliceOneProduct,"sliceOneProduct");
+
+  const handleAddCarProduct=(e)=>{
+    dispatch(addCartItem(displayData))
+  }
 
   const{id}=useParams()
 
@@ -47,13 +54,14 @@ const Menu = () => {
         
         <div className='flex gap-6'>
         <button className="bg-yellow-500 hover:bg-yellow-600 w-40 h-12 mt-1 font-bold text-slate-800  mb-4">Buy Now</button>
-        <button className="bg-yellow-500 hover:bg-yellow-600 w-40 h-12 mt-1 font-bold text-slate-800  mb-4">Add Cart</button>
+        <button onClick={handleAddCarProduct} className="bg-yellow-500 hover:bg-yellow-600 w-40 h-12 mt-1 font-bold text-slate-800  mb-4">Add Cart</button>
         </div>
 
         <p className='capitalize font-bold text-slate-700 text-2xl h-[120px] '>Description :-<p className='ml-3 capitalize font-medium text-xl text-slate-700'>{displayData?.description}</p></p>
 
         
       </div>
+      
       </div>
 
     <div>
