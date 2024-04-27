@@ -94,7 +94,7 @@ const Home = () => {
         </div>
 
         <div className=" md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
-          {filterProduct.map((element,id) => {
+          {filterProduct.map((element) => {
             return (
               <div onClick={()=>redirect(element._id)} >
                 <HomeCard

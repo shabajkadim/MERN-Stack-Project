@@ -75,10 +75,10 @@ export const Login = async (req, res) => {
         }
         
         const token=await jwt.sign({userId:user._id},process.env.JWT_SECRET)
-        console.log(token,"token");
+        // console.log(token,"token");
         
 
-         res.status(200).json({ success: true, message: "Login successful",   token:token, user:{userId:user._id, name:user.name, email:user.email} });
+         res.status(200).json({ success: true, message: "Login successful",   token:token, user:{userId:user._id, firstname:user.firstname, email:user.email} });
        
     } catch (error) {
         return res.status(500).json({ success:false, error:error});
@@ -94,10 +94,10 @@ export const getCurrentUser=async(req,res)=>{
         }
 
         const decodedData=await jwt.verify(token,process.env.JWT_SECRET)
-        console.log("ytdeytdyhykj",decodedData.userId,"decodedData");
+        // console.log("ytdeytdyhykj",decodedData.userId,"decodedData");
 
         const user=await UserSchema.findById(decodedData.userId)
-        console.log(user,"user");
+        // console.log(user,"user");
 		
 		if (!user) {
             return res.status(404).json({ success: false })

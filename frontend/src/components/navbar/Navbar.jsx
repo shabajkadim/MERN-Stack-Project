@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import homelogo from './../project-imge/homelogo.png'
 import { AuthContext } from "../context/AuthContext";
 import { useSelector } from "react-redux";
+import { FaCartShopping } from "react-icons/fa6"
+import { CgProfile } from "react-icons/cg"
+// import { RiMenuAddLine } from "react-icons/ri"
 
 
 export const Navbar = () => {
@@ -48,6 +51,7 @@ export const Navbar = () => {
           <div  className=" md:hidden  text-xl text-slate-600" >
             <div onClick={()=>handleShowMenu()} className="text-2xl cursor-pointer">
               <i class="fa-solid fa-bars"></i>
+              
             </div>
             {menuList && (<div className=" absolute flex flex-col bg-white gap-2  mt-2 text-base py-2 px-2 shadow drop-shadow ">
             <Link to={""}>Home</Link>
@@ -60,8 +64,9 @@ export const Navbar = () => {
 
           <div className="text-2xl text-slate-600 relative">
            <Link to={'/cart'}>
-           <i class="fa-solid fa-cart-shopping"></i>
-            <div className="absolute -top-1 -right-1.5 text-white rounded-full m-0 p-0 text-sm h-5 w-5 text-center bg-red-500">
+           {/* <i class="fa-solid fa-cart-shopping"></i> */}
+           <FaCartShopping/>
+            <div className="absolute -top-2 -right-2 text-white rounded-full m-0 p-0 text-sm h-5 w-5 text-center bg-red-500">
               {cartItemNumber.length}
             </div>
            </Link>
@@ -69,14 +74,15 @@ export const Navbar = () => {
 
           <div className="text-xl text-slate-600 pr-4 md:pr-2" onClick={handleShowProfile} >
             <div className="text-3xl cursor-pointer">
-              <i class="fa-regular fa-circle-user"></i>
+              {/* <i class="fa-regular fa-circle-user"></i> */}
+              <CgProfile/>
             </div>
             {showProfile && (
               <div  className="absolute flex flex-col right-2 bg-white py-2 px-2 shadow drop-shadow">
                 <Link to={'new-product'} className="whitespace-nowrap cursor-pointer">New Product</Link>
                 {/* { <Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>
                  <p>{state?. user?.email}</p> } */}
-                {state?.user?.name? <p><p>{state?.user?.name}</p><button onClick={()=>LOGOUT()}>LOGOUT</button><p></p></p>:<Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>}
+                {state?.user?.firstname? <p><p>{state?.user?.firstname}</p><button onClick={()=>LOGOUT()}>LOGOUT</button><p></p></p>:<Link to={'login'} className="whitespace-nowrap cursor-pointer">Login</Link>}
               </div>
             )}
           </div>

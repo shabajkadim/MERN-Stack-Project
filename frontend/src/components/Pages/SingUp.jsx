@@ -78,7 +78,7 @@ const  handleProfileImage= async(e)=>{
       <div className="w-full max-w-sm m-auto mb-10 drop-shadow-md shadow-md bg-white flex flex-col p-4">
         {/* <h1 className="text-center text-3xl font-bold pt-5">Sign Up</h1> */}
         <div className="w-20 h-20 overflow-hidden flex m-auto  rounded-full drop-shadow-md shadow-md mb-5 mt-3 relative">
-          <img src={data.image ? data.image : loginSignUpImage} className="w-full h-full  " />
+          <img src={data.image ? data.image : loginSignUpImage} className="w-full h-full " alt="imgsingup" />
  
       
         <div  className="bg-blue-900 absolute bg-opacity-50 mt-12 bt-0 h-1/2 w-full text-center cursor-pointer text-slate-100">

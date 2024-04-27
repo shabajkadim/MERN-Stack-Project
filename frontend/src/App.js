@@ -12,8 +12,7 @@ import SignUp from './components/Pages/SingUp';
 import NoPageFound from './components/NoPageFound';
 import Demo from './components/Pages/Demo';
 import Cart from './components/Pages/Cart';
-import { useEffect } from 'react';
-import axios from 'axios';
+
 
 
 function App() {

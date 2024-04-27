@@ -20,13 +20,13 @@
 // const AuthContextComponent = ({ children }) => {
 //     const [state, dispatch] = useReducer(Reducer, InitailState);
 
-//     // function LOGIN(data) {
-//     //     dispatch({ type: "LOGIN", payload: data });
-//     // }
+//     function LOGIN(data) {
+//         dispatch({ type: "LOGIN", payload: data });
+//     }
 
-//     // function LOGOUT() {
-//     //     dispatch({ type: "LOGOUT" });
-//     // }
+//     function LOGOUT() {
+//         dispatch({ type: "LOGOUT" });
+//     }
 
 //     async function getUserData(token) {
 //         try {
@@ -61,7 +61,7 @@
 
 
 import { createContext, useEffect, useReducer } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 export const AuthContext=createContext()
 
@@ -92,8 +92,8 @@ const AuthContextComponent=({children})=>{
 
    async function getuserData(token){
         try{
-            // const response=await axios.post("http://localhost:800/api/v1/auth/get-currrent-user",{token})
-            const response={data:{success:true , message:"login suucessfulr",user:{name:"shabaaj",email:"shabaaj@1234"}}}
+            const response=await axios.post("http://localhost:800/api/v1/auth/get-current-user",{token})
+            // const response={data:{success:true , message:"login suucessfulr",user:{name:"shabaaj",email:"shabaaj@1234"}}}
             if(response.data.success){
                 LOGIN(response.data.user)   
             }

@@ -21,7 +21,7 @@ export const CardFeature = ({ name, image, category, price,id }) => {
       <>
       <Link to={`/menu/${id}`} onClick={()=>window.scrollTo({top:0 , behavior:"smooth"})}>
       <div className="h-28 items-center flex flex-col justify-center">
-        <img className="h-full rounded w-full " src={image} />
+        <img className="h-full rounded w-full " src={image} alt="produt-img" />
       </div>
       <p className="text-center font-semibold capitalize text-slate-700 text-lg mt-4 whitespace-nowrap overflow-hidden">
         {name}

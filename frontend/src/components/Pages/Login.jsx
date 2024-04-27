@@ -56,7 +56,7 @@ const {LOGIN}=useContext(AuthContext)//mydata
       <div className="w-full max-w-sm m-auto mb-10 drop-shadow-md shadow-md bg-white flex flex-col p-4">
         {/* <h1 className="text-center text-3xl font-bold pt-5">Sign Up</h1> */}
         <div className="w-20 overflow-hidden flex m-auto  rounded-full drop-shadow-md shadow-md mb-5 mt-3">
-          <img src={loginSignUpImage} className="w-full" />
+          <img src={loginSignUpImage} className="w-full" alt="loginimage" />
         </div>
 
         <form className="w-full" onSubmit={handleSubmit}>

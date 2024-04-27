@@ -31,8 +31,8 @@ const Demo = () => {
   }
   useEffect(() => {
       getProducts()
-  }, [])
-  console.log(productData,"productData");
+  })
+  // console.log(productData,"productData");
 
   return (
     <div style={state} className='pt-20 bg-slate-100 min-h-0 min-h-[650px]'>
@@ -43,14 +43,14 @@ const Demo = () => {
       {products?.length ? <div className='flex flex-wrap gap-4 p-4 items-center' >
                 {products?.map((product) => (
                     <div >
-                      <p><img className='w-22 h-20  ' src={product.image} /></p>                       
+                      <p><img className='w-22 h-20  ' src={product.image} alt='productimg' /></p>                       
                         <h3>Name : {product.name}</h3>
                         <h4>Price : {product.price}/-</h4>
                         <h4>Category : {product.category}</h4>
                        
                     </div>
                 ))}
-            </div> : <div className='flex justify-center items-center w-full h-full'><img src={loadingIcon} className='items-center ' /></div>
+            </div> : <div className='flex justify-center items-center w-full h-full'><img src={loadingIcon} className='items-center ' alt='loading icon' /></div>
             }
 
       </div>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { CardFeature } from './cardFeature';
 import { useNavigate } from 'react-router-dom';
 import FilterProduct from './FilterProduct';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 export const AllProduct = ({category}) => {
     const[products,setProducts]=useState([])//store all data
@@ -18,7 +18,7 @@ export const AllProduct = ({category}) => {
       data.category
     )}
   ))]
-
+  const[datatFilter,setDataFilter]=useState("") 
   const[isFilterProduct,setIsFilterProduct]=useState([])
 
   // const isFilterProduct=useSelector((state)=>state.product)
@@ -28,6 +28,7 @@ export const AllProduct = ({category}) => {
   },[products])
 
   const getFilterProduct=(category)=>{
+    setDataFilter(category)
     const dataFilter=products.filter(el=>el.category === category)
     setIsFilterProduct(()=>{
       return[...dataFilter]
@@ -61,7 +62,11 @@ export const AllProduct = ({category}) => {
       <div className=" flex gap-4 justify-center overflow-scroll scrollbar-none">
             {categoryList.map((data)=>{
               return (
-                <FilterProduct category={data} onClick={()=>getFilterProduct(data)} />
+                <FilterProduct 
+                category={data} 
+                isActive={data.toLowerCase() === datatFilter.toLowerCase()}
+                onClick={()=>getFilterProduct(data)}
+                 />
               )
             })}
           </div>

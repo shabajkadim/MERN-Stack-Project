@@ -80,7 +80,7 @@ const NewProduct = () => {
           <label htmlFor='image'>Image
           <div className='h-40 w-full bg-slate-200  cursor-pointer rounded flex items-center justify-center' >
            {
-             uploadedData.image? <img src={uploadedData.image}className='h-full' />:<span className='text-5xl '><i class="fa-solid fa-cloud-arrow-up"></i></span>
+             uploadedData.image? <img src={uploadedData.image}className='h-full' alt='dataimage' />:<span className='text-5xl '><i class="fa-solid fa-cloud-arrow-up"></i></span>
             
            }
            
