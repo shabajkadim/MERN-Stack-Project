@@ -102,7 +102,7 @@ export const getCurrentUser=async(req,res)=>{
 		if (!user) {
             return res.status(404).json({ success: false })
         }
-        return res.status(200).json({success:true, user: { name: user.name, email: user.email, userId: user._id }})
+        return res.status(200).json({success:true, user: { name: user.firstname, email: user.email, userId: user._id }})
     }catch(error){
         return res.status(500).json({success:false, error:error})
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { FaPlus } from "react-icons/fa"
-import { FaMinus } from "react-icons/fa"
+// import { FaPlus } from "react-icons/fa"
+// import { FaMinus } from "react-icons/fa"
 import { deleteCartItem ,incrementQty,decrementQty} from "../redux/productSlice";
 
 export const CartProduct = ({
@@ -44,15 +44,15 @@ export const CartProduct = ({
         <div className="flex  justify-between ">
           <div className="flex item-center gap-3">
             <button  className="bg-slate-300 hover:bg-slate-400 p-1 rounded   font-bold " onClick={()=>dispatch(incrementQty(id))}>
-              {/* <i class="fa-solid fa-plus"></i> */}
-              <FaPlus/>
+              <i class="fa-solid fa-plus"></i>
+              {/* <FaPlus/> */}
             </button>
 
             <p className="font-medium text-xl">{qty}</p>
 
             <button className="bg-slate-300 hover:bg-slate-400  p-1  rounded font-bold red " onClick={()=>dispatch(decrementQty(id))}>
-              {/* <i class="fa-solid fa-minus"></i> */}
-              <FaMinus/>
+              <i class="fa-solid fa-minus"></i>
+              {/* <FaMinus/> */}
             </button>
           </div>
 

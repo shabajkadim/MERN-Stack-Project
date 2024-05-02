@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { CartProduct } from "../All-products/CartProduct";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { loadStripe } from "@stripe/stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const productCartItem = useSelector((state) => state.product.cartItem);
@@ -65,19 +65,19 @@ const Cart = () => {
     
 // }
 
-const handlePayment = async () => {
-  try {
-    const res = await axios.post("http://localhost:8000/api/v1/check-payment", productCartItem);
-    const sessionId = res.data;
-    toast("Redirecting to payment gateway...");
-    const stripePromise = await loadStripe(process.env.REACT_STRIPE_PUBLIC_KEY);
-    const stripe = await stripePromise;
-    stripe.redirectToCheckout({ sessionId });
-  } catch (error) {
-    console.error("Error occurred while making payment:", error);
-    toast.error("Payment failed. Please try again later.");
-  }
-};
+// const handlePayment = async () => {
+//   try {
+//     const res = await axios.post("http://localhost:8000/api/v1/check-payment", productCartItem);
+//     const sessionId = res.data;
+//     toast("Redirecting to payment gateway...");
+//     const stripePromise = await loadStripe(process.env.REACT_STRIPE_PUBLIC_KEY);
+//     const stripe = await stripePromise;
+//     stripe.redirectToCheckout({ sessionId });
+//   } catch (error) {
+//     console.error("Error occurred while making payment:", error);
+//     toast.error("Payment failed. Please try again later.");
+//   }
+// };
     
   return (
     <>
@@ -126,9 +126,9 @@ const handlePayment = async () => {
                   {totalPrice}
                 </p>
               </div>
-
-              <button className="bg-red-400 w-full p-3 text-white text-lg font-bold m-auto hover:bg-red-600" onClick={handlePayment}>
-                Payment
+   
+              <button className="bg-red-400 w-full p-3 text-white text-lg font-bold m-auto hover:bg-red-600" > 
+                Payment 
               </button>
             </div>
           </div>
