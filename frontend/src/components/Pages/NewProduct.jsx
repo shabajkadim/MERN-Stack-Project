@@ -34,7 +34,7 @@ const NewProduct = () => {
     e.preventDefault()
     try{
       if(uploadedData.name && uploadedData.category && uploadedData.image && uploadedData.price && uploadedData.description){
-        const response=await axios.post('http://localhost:8000/api/v1/product/add-product',{uploadedData})
+        const response=await axios.post(`${process.env.REACT_APP_SERVER_DOMIN}/api/v1/product/add-product`,{uploadedData})
         if(response.data.success===true){
           alert(response.data.message)
          setUploadedDada({
